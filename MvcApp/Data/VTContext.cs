@@ -16,6 +16,7 @@ namespace MvcApp.Data
         public DbSet<Event> Event { get; set; }
         public DbSet<Organization> Organization { get; set; }
         public DbSet<Volunteer> Volunteer { get; set; }
+        public DbSet<EventVolunteer> EventVolunteers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -12,7 +12,7 @@ namespace MvcApp.Models
         public string Phone { get; set; }
         public string Email { get; set; }
 
-        public virtual ICollection<Event> Events {get; set; }
+        public virtual ICollection<EventVolunteer> EventsVolunteers {get; set; }
 
     }
 }

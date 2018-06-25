@@ -42,6 +42,30 @@
             @Html.DisplayFor(model => model.EndTime)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.EventVolunteers)
+        </dt>
+
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Volunteer ID</th>
+                    <th>Email</th>
+                </tr>
+                @foreach (var item in Model.EventVolunteers)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Volunteer.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Volunteer.Email)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
     </dl>
 </div>
 <p>

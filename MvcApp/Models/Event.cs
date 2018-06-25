@@ -13,7 +13,7 @@ namespace MvcApp.Models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        public virtual ICollection<Volunteer> Volunteers { get; set; }
+        public virtual ICollection<EventVolunteer> EventVolunteers { get; set; }
         public virtual Organization Organization { get; set; }
     }
 }

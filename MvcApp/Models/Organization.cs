@@ -14,7 +14,6 @@ namespace MvcApp.Models
         public string Website { get; set; }   
         public string Cause { get; set; }
 
-        public virtual ICollection<Event> Events { get; set; }
-        public virtual ICollection<Volunteer> Volunteers { get; set; }
+        public virtual ICollection<EventVolunteer> EventVolunteers { get; set; }
     }
 }
