@@ -11,9 +11,9 @@ using MvcApp.Models;
 
 namespace MvcApp.Controllers
 {
-    public class EventsController : Controller
+    public class EventController : Controller
     {
-        private Data.AppContext db = new Data.AppContext();
+        private VTContext db = new VTContext();
 
         // GET: Events
         public ActionResult Index()

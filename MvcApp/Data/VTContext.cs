@@ -8,9 +8,9 @@ using System.Web;
 
 namespace MvcApp.Data
 {
-    public class AppContext : DbContext
+    public class VTContext : DbContext
     {
-        public AppContext() : base("AppContext")
+        public VTContext() : base("VTContext")
         { }
 
         public DbSet<Event> Event { get; set; }

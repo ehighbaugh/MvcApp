@@ -7,12 +7,12 @@ using System.Web;
 
 namespace MvcApp.Data
 {
-    public class AppInitializer : DropCreateDatabaseIfModelChanges<AppContext>
+    public class VTInitializer : DropCreateDatabaseIfModelChanges<VTContext>
     {
         protected override void 
             
             
-            Seed(AppContext context)
+            Seed(VTContext context)
         {
             var events = new List<Event>
             {
