@@ -1,0 +1,25 @@
+﻿using MvcApp.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
+using System.Web;
+
+namespace MvcApp.Data
+{
+    public class AppContext : DbContext
+    {
+        public AppContext() : base("AppContext")
+        { }
+
+        public DbSet<Event> Event { get; set; }
+        public DbSet<Organization> Organization { get; set; }
+        public DbSet<Volunteer> Volunteer { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
+    }
+}
