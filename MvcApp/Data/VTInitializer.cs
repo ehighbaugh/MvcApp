@@ -16,9 +16,9 @@ namespace MvcApp.Data
         {
             var events = new List<Event>
             {
-                new Event{Id=1, Name="Toys For Tots", Date=DateTime.Parse("12/01/2018"), StartTime=DateTime.Parse("8:00"), EndTime=DateTime.Parse("12:00")},
-                new Event{Id=2, Name="Blood Drive", Date=DateTime.Parse("11/01/2018"), StartTime=DateTime.Parse("9:00"), EndTime=DateTime.Parse("12:00")},
-                new Event{Id=3, Name="Adoption Event", Date=DateTime.Parse("10/01/2018"), StartTime=DateTime.Parse("10:00"), EndTime=DateTime.Parse("12:00")},
+                new Event{Id=1, Name="Toys For Tots", Date=DateTime.Parse("12/12/2018 12:00:00 AM"), StartTime=DateTime.Parse("8:00"), EndTime=DateTime.Parse("12:00")},
+                new Event{Id=2, Name="Blood Drive", Date=DateTime.Parse("11/01/2018"), StartTime=DateTime.Parse("9:00"), EndTime=DateTime.Parse("18:00")},
+                new Event{Id=3, Name="Adoption Event", Date=DateTime.Parse("10/01/2018"), StartTime=DateTime.Parse("10:00"), EndTime=DateTime.Parse("14:00")},
             };
 
             events.ForEach(e => context.Event.Add(e));

@@ -47,13 +47,20 @@ namespace MvcApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Date,StartTime,EndTime")] Event @event)
+        public ActionResult Create([Bind(Include = "Name,Date,StartTime,EndTime")] Event @event)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Event.Add(@event);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Event.Add(@event);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again later. If problem persists, contact system admin.");
             }
 
             return View(@event);
@@ -79,7 +86,7 @@ namespace MvcApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Date,StartTime,EndTime")] Event @event)
+        public ActionResult Edit([Bind(Include = "Name,Date,StartTime,EndTime")] Event @event)
         {
             if (ModelState.IsValid)
             {
