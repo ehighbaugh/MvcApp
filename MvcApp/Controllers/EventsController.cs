@@ -11,107 +11,107 @@ using MvcApp.Models;
 
 namespace MvcApp.Controllers
 {
-    public class VolunteerController : Controller
+    public class EventsController : Controller
     {
         private VTContext db = new VTContext();
 
-        // GET: Volunteer
+        // GET: Events
         public ActionResult Index()
         {
-            return View(db.Volunteer.ToList());
+            return View(db.Event.ToList());
         }
 
-        // GET: Volunteer/Details/5
+        // GET: Events/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Volunteer volunteer = db.Volunteer.Find(id);
-            if (volunteer == null)
+            Event @event = db.Event.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(volunteer);
+            return View(@event);
         }
 
-        // GET: Volunteer/Create
+        // GET: Events/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Volunteer/Create
+        // POST: Events/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Phone,Email")] Volunteer volunteer)
+        public ActionResult Create([Bind(Include = "Id,Name,Date,StartTime,EndTime,OrganizationId")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                db.Volunteer.Add(volunteer);
+                db.Event.Add(@event);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(volunteer);
+            return View(@event);
         }
 
-        // GET: Volunteer/Edit/5
+        // GET: Events/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Volunteer volunteer = db.Volunteer.Find(id);
-            if (volunteer == null)
+            Event @event = db.Event.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(volunteer);
+            return View(@event);
         }
 
-        // POST: Volunteer/Edit/5
+        // POST: Events/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Phone,Email")] Volunteer volunteer)
+        public ActionResult Edit([Bind(Include = "Id,Name,Date,StartTime,EndTime,OrganizationId")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(volunteer).State = EntityState.Modified;
+                db.Entry(@event).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(volunteer);
+            return View(@event);
         }
 
-        // GET: Volunteer/Delete/5
+        // GET: Events/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Volunteer volunteer = db.Volunteer.Find(id);
-            if (volunteer == null)
+            Event @event = db.Event.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(volunteer);
+            return View(@event);
         }
 
-        // POST: Volunteer/Delete/5
+        // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Volunteer volunteer = db.Volunteer.Find(id);
-            db.Volunteer.Remove(volunteer);
+            Event @event = db.Event.Find(id);
+            db.Event.Remove(@event);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

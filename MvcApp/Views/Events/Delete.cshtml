@@ -1,11 +1,12 @@
 ﻿@model MvcApp.Models.Event
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Details</h2>
+<h2>Delete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Event</h4>
     <hr />
@@ -43,32 +44,21 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EventVolunteers)
+            @Html.DisplayNameFor(model => model.OrganizationId)
         </dt>
 
         <dd>
-            <table class="table">
-                <tr>
-                    <th>Volunteer ID</th>
-                    <th>Email</th>
-                </tr>
-                @foreach (var item in Model.EventVolunteers)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Volunteer.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Volunteer.Email)
-                        </td>
-                    </tr>
-                }
-            </table>
+            @Html.DisplayFor(model => model.OrganizationId)
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -11,114 +11,107 @@ using MvcApp.Models;
 
 namespace MvcApp.Controllers
 {
-    public class EventController : Controller
+    public class OrganizationsController : Controller
     {
         private VTContext db = new VTContext();
 
-        // GET: Events
+        // GET: Organizations
         public ActionResult Index()
         {
-            return View(db.Event.ToList());
+            return View(db.Organization.ToList());
         }
 
-        // GET: Events/Details/5
+        // GET: Organizations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Event.Find(id);
-            if (@event == null)
+            Organization organization = db.Organization.Find(id);
+            if (organization == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(organization);
         }
 
-        // GET: Events/Create
+        // GET: Organizations/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Events/Create
+        // POST: Organizations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name,Date,StartTime,EndTime")] Event @event)
+        public ActionResult Create([Bind(Include = "Id,Name,Phone,Website,Cause")] Organization organization)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    db.Event.Add(@event);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (DataException)
-            {
-                ModelState.AddModelError("", "Unable to save changes. Try again later. If problem persists, contact system admin.");
+                db.Organization.Add(organization);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            return View(@event);
+            return View(organization);
         }
 
-        // GET: Events/Edit/5
+        // GET: Organizations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Event.Find(id);
-            if (@event == null)
+            Organization organization = db.Organization.Find(id);
+            if (organization == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(organization);
         }
 
-        // POST: Events/Edit/5
+        // POST: Organizations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Name,Date,StartTime,EndTime")] Event @event)
+        public ActionResult Edit([Bind(Include = "Id,Name,Phone,Website,Cause")] Organization organization)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(@event).State = EntityState.Modified;
+                db.Entry(organization).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(@event);
+            return View(organization);
         }
 
-        // GET: Events/Delete/5
+        // GET: Organizations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Event.Find(id);
-            if (@event == null)
+            Organization organization = db.Organization.Find(id);
+            if (organization == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(organization);
         }
 
-        // POST: Events/Delete/5
+        // POST: Organizations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Event @event = db.Event.Find(id);
-            db.Event.Remove(@event);
+            Organization organization = db.Organization.Find(id);
+            db.Organization.Remove(organization);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -25,7 +25,8 @@ namespace MvcApp.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:t}")]
         public DateTime EndTime { get; set; }
 
-        public virtual ICollection<EventVolunteer> EventVolunteers { get; set; }
+        public int? OrganizationId { get; set; }
+
         public virtual Organization Organization { get; set; }
     }
 }

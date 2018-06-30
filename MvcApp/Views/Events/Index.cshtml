@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MvcApp.Models.Event>
 
 @{
-    ViewBag.Title = "Events Index";
+    ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.EndTime)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrganizationId)
+        </th>
         <th></th>
     </tr>
 
@@ -39,6 +42,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrganizationId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

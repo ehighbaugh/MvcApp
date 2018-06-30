@@ -11,107 +11,107 @@ using MvcApp.Models;
 
 namespace MvcApp.Controllers
 {
-    public class OrganizationController : Controller
+    public class VolunteersController : Controller
     {
         private VTContext db = new VTContext();
 
-        // GET: Organization
+        // GET: Volunteers
         public ActionResult Index()
         {
-            return View(db.Organization.ToList());
+            return View(db.Volunteer.ToList());
         }
 
-        // GET: Organization/Details/5
+        // GET: Volunteers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Organization organization = db.Organization.Find(id);
-            if (organization == null)
+            Volunteer volunteer = db.Volunteer.Find(id);
+            if (volunteer == null)
             {
                 return HttpNotFound();
             }
-            return View(organization);
+            return View(volunteer);
         }
 
-        // GET: Organization/Create
+        // GET: Volunteers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Organization/Create
+        // POST: Volunteers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Phone,Website,Cause")] Organization organization)
+        public ActionResult Create([Bind(Include = "Id,Name,Phone,Email")] Volunteer volunteer)
         {
             if (ModelState.IsValid)
             {
-                db.Organization.Add(organization);
+                db.Volunteer.Add(volunteer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(organization);
+            return View(volunteer);
         }
 
-        // GET: Organization/Edit/5
+        // GET: Volunteers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Organization organization = db.Organization.Find(id);
-            if (organization == null)
+            Volunteer volunteer = db.Volunteer.Find(id);
+            if (volunteer == null)
             {
                 return HttpNotFound();
             }
-            return View(organization);
+            return View(volunteer);
         }
 
-        // POST: Organization/Edit/5
+        // POST: Volunteers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Phone,Website,Cause")] Organization organization)
+        public ActionResult Edit([Bind(Include = "Id,Name,Phone,Email")] Volunteer volunteer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(organization).State = EntityState.Modified;
+                db.Entry(volunteer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(organization);
+            return View(volunteer);
         }
 
-        // GET: Organization/Delete/5
+        // GET: Volunteers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Organization organization = db.Organization.Find(id);
-            if (organization == null)
+            Volunteer volunteer = db.Volunteer.Find(id);
+            if (volunteer == null)
             {
                 return HttpNotFound();
             }
-            return View(organization);
+            return View(volunteer);
         }
 
-        // POST: Organization/Delete/5
+        // POST: Volunteers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Organization organization = db.Organization.Find(id);
-            db.Organization.Remove(organization);
+            Volunteer volunteer = db.Volunteer.Find(id);
+            db.Volunteer.Remove(volunteer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
